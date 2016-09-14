@@ -45,15 +45,12 @@ public class ExampleConttoller {
 	@ResponseBody
 	public MapResponse login(@RequestParam(value = "appName", required = true) String appName) {
 		List<ConstraintViolation> list =	validator.validate(new PhoneValidation(appName));
-		
 		return new MapResponse(null);
 	}
 	
 	@RequestMapping(value = "/test2", method = RequestMethod.GET, produces = { "application/json" })
 	public String login2(@RequestParam(value = "appName", required = true) String appName,
 			@RequestParam(value = "appType", required = true) String appType) {
-
-
 		return "/aaa/index";
 	}
 	
