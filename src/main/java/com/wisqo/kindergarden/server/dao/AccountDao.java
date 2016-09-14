@@ -21,10 +21,11 @@ import java.util.Map;
 import com.wisqo.kindergarden.server.dao.bean.Account;
 import com.wisqo.kindergarden.server.dao.bean.AccountPost;
 import com.wisqo.kindergarden.server.dao.bean.AccountRole;
+import com.wisqo.kindergarden.server.dao.bean.AccountView;
 
 public interface AccountDao {
 	public Account get(int id);
-	public List<Account> getAccountsByObject(Map<String, String> params);
+	public List<AccountView> getAccountViewsByObject(Map<String, Object> params);
 	public int saveAccount(String username, String password, int postId, int roleId);
 	public int updateAccount(Account accountBean);
 	public List<AccountPost> getAccountPosts(Map<String, String> params);
