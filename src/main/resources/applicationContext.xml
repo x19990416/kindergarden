@@ -7,12 +7,14 @@
 						 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd"
 	default-lazy-init="false">
 	<context:component-scan base-package="com.macrossx.server" />
+	<context:component-scan base-package="com.wisqo.kindergarden" />
 	<context:component-scan base-package="com.macrossx.springframework" />
 	<bean id="applicationProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>classpath:application.properties</value>
+				<value>classpath:jdbc.properties</value>
 				<!-- <value>classpath:config/alipay.properties</value> <value>classpath:config/wechat.properties</value> -->
 			</list>
 		</property>
@@ -23,6 +25,7 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 	<import resource="classpath:commonContext.xml" />
+	<import resource="classpath:application-dataSource.xml" />
 	<!-- aop -->
 	<!-- <bean id="httpRequestSignValidity" class="com.carway.appserver.aop.HttpRequestSignValidity" />
 	<bean id="httpRequestTokenValidity" class="com.carway.appserver.aop.HttpRequestTokenValidity" />-->
