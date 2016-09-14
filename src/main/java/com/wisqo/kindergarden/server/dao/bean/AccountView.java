@@ -20,7 +20,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Account {
+public class AccountView {
 	private long id;
 	private String username;
 	private String password;
