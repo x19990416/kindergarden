@@ -27,7 +27,9 @@ public class Account {
 	private String realname;
 	private String phoneNo; 
 	private int roleId;
+	private String roleText;
 	private int postId;
+	private String postText;
 	private String deviceToken;
 	private Date insertTime;
 	private Date updateTime;

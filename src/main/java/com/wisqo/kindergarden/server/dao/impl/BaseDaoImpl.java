@@ -1,8 +1,10 @@
 package com.wisqo.kindergarden.server.dao.impl;
 
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -14,6 +16,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import com.wisqo.kindergarden.server.dao.BaseDao;
+import com.wisqo.kindergarden.server.dao.bean.AccountRole;
 
 @Repository
 public class BaseDaoImpl implements BaseDao {
@@ -62,7 +65,7 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	@Override
-	public <T> List<T> listObj(String sql, Class<T> elementType,Map<String, Object> pMap) {
+	public <T> List<T> listObj(String sql, Class<T> elementType, Map<String, Object> pMap) {
 		Object[] args=null;
 		if (pMap!=null && pMap.size()>0) {
 			args=new Object[pMap.size()];
@@ -100,5 +103,7 @@ public class BaseDaoImpl implements BaseDao {
 		 Map<String,Object> counts = jdbcTemplate.queryForMap(sql, args);
 		return (long) counts.get(countName);
 	}	
+	
+
 
 }

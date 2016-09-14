@@ -15,21 +15,17 @@
  */
 package com.wisqo.kindergarden.server.dao.bean;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
-public class Account {
+public class SchoolStudent {
 	private long id;
-	private String username;
-	private String password;
-	private String realname;
-	private String phoneNo; 
-	private int roleId;
-	private int postId;
-	private String deviceToken;
-	private Date insertTime;
-	private Date updateTime;
+	private String name;
+	private long schoolClassId;
+	private long accountId;
+	private String identityNo;
+	private String phoneFather;
+	private String phoneMother;
 	private int status;
+
 }

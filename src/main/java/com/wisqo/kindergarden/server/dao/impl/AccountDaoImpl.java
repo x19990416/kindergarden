@@ -29,6 +29,7 @@ import com.wisqo.kindergarden.server.dao.AccountDao;
 import com.wisqo.kindergarden.server.dao.bean.Account;
 import com.wisqo.kindergarden.server.dao.bean.AccountPost;
 import com.wisqo.kindergarden.server.dao.bean.AccountRole;
+import com.wisqo.kindergarden.server.dao.bean.AccountView;
 
 @Repository
 public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
@@ -40,55 +41,16 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 
 	}
 
-	public List<Account> getAccountsByObject(Map<String, String> params) {
-		StringBuilder sql = new StringBuilder("select * from AccountView ");
-		if (params.isEmpty()) {
-			return this.listObj(sql.toString(), Account.class, new Object[] {});
-		}
-		String key = "";
-		sql.append("where ");
-		Set<String> set = params.keySet();
-		Iterator<String> it = set.iterator();
-		while (it.hasNext()) {
-			key = it.next();
-			sql.append(key).append("=?");
-			break;
-		}
-		return this.listObj(sql.toString(), Account.class, new Object[] { params.get(key) });
+	public List<AccountView> getAccountViewsByObject(Map<String, Object> params) {
+		return this.listObj("select * from AccountView", AccountView.class, params);
 	}
 
 	public List<AccountPost> getAccountPosts(Map<String, String> params) {
-		StringBuilder sql = new StringBuilder("select * from AccountPost");
-		if (params.isEmpty()) {
-			return this.listObj(sql.toString(), AccountPost.class, new Object[] {});
-		}
-		String key = "";
-		sql.append("where ");
-		Set<String> set = params.keySet();
-		Iterator<String> it = set.iterator();
-		while (it.hasNext()) {
-			key = it.next();
-			sql.append(key).append("=?");
-			break;
-		}
-		return this.listObj(sql.toString(), AccountPost.class, new Object[] { params.get(key) });
+		return this.listObj("select * from Account_Post", AccountPost.class, params);
 	}
 
 	public List<AccountRole> getAccountRole(Map<String, String> params) {
-		StringBuilder sql = new StringBuilder("select * from AccountPost");
-		if (params.isEmpty()) {
-			return this.listObj(sql.toString(), AccountRole.class, new Object[] {});
-		}
-		String key = "";
-		sql.append("where ");
-		Set<String> set = params.keySet();
-		Iterator<String> it = set.iterator();
-		while (it.hasNext()) {
-			key = it.next();
-			sql.append(key).append("=?");
-			break;
-		}
-		return this.listObj(sql.toString(), AccountRole.class, new Object[] { params.get(key) });
+		return this.listObj("select * from Account_Role", AccountRole.class, params);
 	}
 
 	public int saveAccount(String username, String password, int postId, int roleId) {
@@ -113,7 +75,7 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 
 	public int updateAccountRole(AccountRole accountBean) {
 		String sql = "update account_role set text=?,authority=? where id = ?";
-		return update(sql, new Object[] { accountBean.getText(), accountBean.getAuthority(),accountBean.getId() });
+		return update(sql, new Object[] { accountBean.getText(), accountBean.getAuthority(), accountBean.getId() });
 	}
 
 	public int updateAccount(Account accountBean) {
@@ -127,17 +89,16 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 	public static void main(String[] args) {
 		SpringUtils.init("applicationContext.xml");
 		AccountDao accountDao = SpringUtils.getBean(AccountDao.class);
-		Map<String, String> map = Maps.newHashMap();
+		Map<String, Object> map = Maps.newHashMap();
 		map.put("id", "1");
 
-		Account account = accountDao.getAccountsByObject(map).get(0);
+		AccountView account = accountDao.getAccountViewsByObject(map).get(0);
 		System.err.println(account);
-		account.setDeviceToken("test");
-		accountDao.updateAccount(account);
+		// account.setDeviceToken("test");
+		// accountDao.updateAccount(account);
 		// System.err.println(new AccountDaoImpl().getAll(new Account()));
 		// System.err.println(accountDao.saveAccount("a","1",3,"4"));
 
 	}
-
 
 }
