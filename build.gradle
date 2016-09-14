@@ -49,6 +49,8 @@ compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.2.RELEA
 compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
 // https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
 compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+// https://mvnrepository.com/artifact/org.springframework/spring-test
+compile group: 'org.springframework', name: 'spring-test', version: '4.3.2.RELEASE'
 
 
 
