@@ -25,8 +25,9 @@ import com.wisqo.kindergarden.server.dao.bean.AccountView;
 
 public interface AccountDao {
 	public Account get(int id);
+	public boolean checkUsername(String username);
 	public List<AccountView> getAccountViewsByObject(Map<String, Object> params);
-	public int saveAccount(String username, String password, int postId, int roleId);
+	public int saveAccount(String realname,String username, String password, int postId, int roleId);
 	public int updateAccount(Account accountBean);
 	public List<AccountPost> getAccountPosts(Map<String, String> params);
 	public List<AccountRole> getAccountRole(Map<String, String> params);

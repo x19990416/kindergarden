@@ -32,7 +32,7 @@ import com.wisqo.kindergarden.server.dao.bean.AccountView;
 @Repository
 public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 	public Account get(int id) {
-		List<Account> list = this.listObj("select * from AccountView where id=?", Account.class, id);
+		List<Account> list = this.listObj("select * from account_view where id=?", Account.class, id);
 		if (list.size() == 1)
 			return list.get(0);
 		return null;
@@ -40,20 +40,20 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 	}
 
 	public List<AccountView> getAccountViewsByObject(Map<String, Object> params) {
-		return this.listObj("select * from AccountView", AccountView.class, params);
+		return this.listObj("select * from account_view", AccountView.class, params);
 	}
 
 	public List<AccountPost> getAccountPosts(Map<String, String> params) {
-		return this.listObj("select * from Account_Post", AccountPost.class, params);
+		return this.listObj("select * from account_post", AccountPost.class, params);
 	}
 
 	public List<AccountRole> getAccountRole(Map<String, String> params) {
-		return this.listObj("select * from Account_Role", AccountRole.class, params);
+		return this.listObj("select * from account_role", AccountRole.class, params);
 	}
 
-	public int saveAccount(String username, String password, int postId, int roleId) {
-		String sql = "insert into account(username,password,post_id,role_id,status,insert_time)values(?,?,?,?,?,SYSDATE())";
-		return update(sql, new Object[] { username, password, postId, roleId, Constant.USER_STATUS.ON.id() });
+	public int saveAccount(String realname,String username, String password, int postId, int roleId) {
+		String sql = "insert into account(realname,username,password,post_id,role_id,status,insert_time)values(?,?,?,?,?,?,SYSDATE())";
+		return update(sql, new Object[] { realname,username, password, postId, roleId, Constant.USER_STATUS.ON.id() });
 	}
 
 	public int saveAccountPost(String text) {
@@ -97,6 +97,13 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
 		// System.err.println(new AccountDaoImpl().getAll(new Account()));
 		// System.err.println(accountDao.saveAccount("a","1",3,"4"));
 
+	}
+
+	@Override
+	public boolean checkUsername(String userame) {
+		Map<String,Object> params=Maps.newHashMap();
+		params.put("username", userame);
+		return !this.listObj("select username from account", Account.class, params).isEmpty();
 	}
 
 }
