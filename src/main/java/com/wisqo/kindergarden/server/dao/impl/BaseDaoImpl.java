@@ -1,10 +1,8 @@
 package com.wisqo.kindergarden.server.dao.impl;
 
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -16,7 +14,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import com.wisqo.kindergarden.server.dao.BaseDao;
-import com.wisqo.kindergarden.server.dao.bean.AccountRole;
 
 @Repository
 public class BaseDaoImpl implements BaseDao {
