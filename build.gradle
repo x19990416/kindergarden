@@ -43,8 +43,16 @@ compile group: 'org.springframework', name: 'spring-aop', version: '4.3.0.RELEAS
 compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.9'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
 compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.0.RELEASE'
-// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '8.5.4'
+// https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.2.RELEASE'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
+// https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
+compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+
+
+
+
 
 
 	
